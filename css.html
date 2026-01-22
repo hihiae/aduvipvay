@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noguchi Key System</title>
+    <style>
+        /* CSS ĐƠN GIẢN */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #2d2d2d;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 { color: #00ff88; margin-bottom: 20px; }
+        .key-box {
+            background: #111;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #00ff88;
+            font-family: monospace;
+            font-size: 1.2em;
+            word-break: break-all;
+            margin: 20px 0;
+            color: #fff;
+        }
+        button {
+            background: #00ff88;
+            color: #1a1a1a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background: #00cc6e; transform: scale(1.05); }
+        .footer { margin-top: 20px; font-size: 0.8em; color: #888; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>YOUR KEY</h1>
+        <p>Copy the key below and paste it into the script:</p>
+        
+        <div class="key-box" id="keyDisplay">Loading...</div>
+        
+        <button onclick="copyKey()">COPY KEY</button>
+        
+        <div class="footer">Powered by Noguchi System</div>
+    </div>
+
+    <script>
+        // JAVASCRIPT LẤY KEY TỪ URL
+        function getKeyFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const key = urlParams.get('key'); // Tìm chữ ?key=... trên URL
+            
+            const display = document.getElementById('keyDisplay');
+            if (key) {
+                display.innerText = key;
+            } else {
+                display.innerText = "No Key Found! Please get link again.";
+                display.style.color = "#ff4444";
+            }
+        }
+
+        function copyKey() {
+            const keyText = document.getElementById('keyDisplay').innerText;
+            navigator.clipboard.writeText(keyText).then(() => {
+                alert("Key copied to clipboard!");
+            });
+        }
+
+        // Chạy hàm khi trang web tải xong
+        window.onload = getKeyFromURL;
+    </script>
+</body>
+</html>
