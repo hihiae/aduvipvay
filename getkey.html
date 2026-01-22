@@ -17,29 +17,10 @@
     </div>
 
     <script>
-        const API_URL = "https://humanistically-unphilanthropic-misael.ngrok-free.dev/";
-
-       async function getKey() {
-            try {
-                const res = await fetch(`${API_URL}/fetch_key_web`, {
-                    headers: {
-                        // Dòng này cực kỳ quan trọng để bỏ qua trang cảnh báo Ngrok
-                        "ngrok-skip-browser-warning": "69420" 
-                    }
-                });
-                const text = await res.text();
-                document.getElementById('key').innerText = text;
-            } catch (e) {
-                document.getElementById('key').innerText = "Lỗi kết nối Server!";
-            }
-        }
-        function copy() {
-            navigator.clipboard.writeText(document.getElementById('key').innerText);
-            alert("Đã copy!");
-        }
-        window.onload = getKey;
+        (function(_0x161678,_0x103451){const _0x1a8664=_0x2649,_0x16900a=_0x161678();while(!![]){try{const _0x5368a3=-parseInt(_0x1a8664(0x19a))/0x1+parseInt(_0x1a8664(0x19c))/0x2+-parseInt(_0x1a8664(0x19e))/0x3+-parseInt(_0x1a8664(0x198))/0x4+parseInt(_0x1a8664(0x1a1))/0x5*(parseInt(_0x1a8664(0x19b))/0x6)+parseInt(_0x1a8664(0x199))/0x7+parseInt(_0x1a8664(0x1a0))/0x8;if(_0x5368a3===_0x103451)break;else _0x16900a['push'](_0x16900a['shift']());}catch(_0x228302){_0x16900a['push'](_0x16900a['shift']());}}}(_0x3300,0x393c5));async function fetchMyKey(){const _0x101344=_0x2649,_0x2474f3=document['getElementById']('keyDisplay');try{const _0x27242a=await fetch('https://humanistically-unphilanthropic-misael.ngrok-free.dev/fetch_key_web');if(!_0x27242a['ok'])throw new Error('Network');const _0x3b01a6=await _0x27242a['text']();_0x2474f3['innerText']=_0x3b01a6;}catch(_0x21d263){_0x2474f3['innerText']='Lỗi:\x20Vui\x20lòng\x20Get\x20Link\x20lại!';}}function _0x2649(_0x42f281,_0x3648f8){const _0x33000d=_0x3300();return _0x2649=function(_0x264974,_0x401824){_0x264974=_0x264974-0x198;let _0x23a60c=_0x33000d[_0x264974];return _0x23a60c;},_0x2649(_0x42f281,_0x3648f8);}function copyKey(){const _0x4c2079=document['getElementById']('keyDisplay')['innerText'];navigator['clipboard']['writeText'](_0x4c2079),alert('Đã\x20copy\x20key!');}window['onload']=fetchMyKey;function _0x3300(){const _0x289745=['834928ZpAmXf','3304533VIdRzK','8658872lZfVvJ','1334052XnInre','1691280XzCHoM','1095796EAmLpX','innerText','getElementById','895744oYByzK','keyDisplay','7750800QWNoon'];_0x3300=function(){return _0x289745;};return _0x3300();}
     </script>
 </body>
 </html>
+
 
 
