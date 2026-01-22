@@ -19,9 +19,14 @@
     <script>
         const API_URL = " https://humanistically-unphilanthropic-misael.ngrok-free.dev";
 
-        async function getKey() {
+       async function getKey() {
             try {
-                const res = await fetch(`${API_URL}/fetch_key_web`);
+                const res = await fetch(`${API_URL}/fetch_key_web`, {
+                    headers: {
+                        // Dòng này cực kỳ quan trọng để bỏ qua trang cảnh báo Ngrok
+                        "ngrok-skip-browser-warning": "69420" 
+                    }
+                });
                 const text = await res.text();
                 document.getElementById('key').innerText = text;
             } catch (e) {
@@ -36,3 +41,4 @@
     </script>
 </body>
 </html>
+
