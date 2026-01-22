@@ -65,29 +65,22 @@
     </div>
 
     <script>
-        // JAVASCRIPT LẤY KEY TỪ URL
-        function getKeyFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const key = urlParams.get('key'); // Tìm chữ ?key=... trên URL
-            
-            const display = document.getElementById('keyDisplay');
-            if (key) {
-                display.innerText = key;
-            } else {
-                display.innerText = "No Key Found! Please get link again.";
-                display.style.color = "#ff4444";
-            }
+        // Link web của bạn: https://hihiae.github.io/aduvipvay/getkey.html
+        window.onload = async function() {
+            const params = new URLSearchParams(window.location.search);
+            const hwid = params.get('hwid');
+            const display = document.getElementById('display-key');
+            const API_URL = "https://your-ngrok-link.ngrok-free.app"; // THAY LINK NGROK CỦA BẠN
+        
+            if (hwid) {
+                try {
+                    const res = await fetch(`${API_URL}/fetch_key_from_web?hwid=${hwid}`);
+                    const key = await res.text();
+                    display.innerText = key;
+                } catch (e) { display.innerText = "Lỗi Server!"; }
+            } else { display.innerText = "Không tìm thấy HWID!"; }
         }
-
-        function copyKey() {
-            const keyText = document.getElementById('keyDisplay').innerText;
-            navigator.clipboard.writeText(keyText).then(() => {
-                alert("Key copied to clipboard!");
-            });
-        }
-
-        // Chạy hàm khi trang web tải xong
-        window.onload = getKeyFromURL;
     </script>
 </body>
 </html>
+
