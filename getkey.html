@@ -1,87 +1,38 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noguchi Key System</title>
     <style>
-        /* CSS ĐƠN GIẢN */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a1a;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: #2d2d2d;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        h1 { color: #00ff88; margin-bottom: 20px; }
-        .key-box {
-            background: #111;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px dashed #00ff88;
-            font-family: monospace;
-            font-size: 1.2em;
-            word-break: break-all;
-            margin: 20px 0;
-            color: #fff;
-        }
-        button {
-            background: #00ff88;
-            color: #1a1a1a;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover { background: #00cc6e; transform: scale(1.05); }
-        .footer { margin-top: 20px; font-size: 0.8em; color: #888; }
+        body { background: #121212; color: white; font-family: sans-serif; text-align: center; padding-top: 100px; }
+        .box { background: #1e1e1e; padding: 20px; border-radius: 10px; display: inline-block; border: 1px solid #00ff88; }
+        #key { font-weight: bold; color: #00ff88; font-size: 1.5em; margin: 15px 0; }
+        button { background: #00ff88; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>YOUR KEY</h1>
-        <p>Copy the key below and paste it into the script:</p>
-        
-        <div class="key-box" id="keyDisplay">Loading...</div>
-        
-        <button onclick="copyKey()">COPY KEY</button>
-        
-        <div class="footer">Powered by Noguchi System</div>
+    <div class="box">
+        <h1>Your Key</h1>
+        <div id="key">Loading...</div>
+        <button onclick="copy()">Copy Key</button>
     </div>
 
     <script>
-        // Link web của bạn: https://hihiae.github.io/aduvipvay/getkey.html
-        window.onload = async function() {
-            const params = new URLSearchParams(window.location.search);
-            const hwid = params.get('hwid');
-            const display = document.getElementById('display-key');
-            const API_URL = "https://humanistically-unphilanthropic-misael.ngrok-free.dev"; // THAY LINK NGROK CỦA BẠN
-        
-            if (hwid) {
-                try {
-                    const res = await fetch(`${API_URL}/fetch_key_from_web?hwid=${hwid}`);
-                    const key = await res.text();
-                    display.innerText = key;
-                } catch (e) { display.innerText = "Lỗi Server!"; }
-            } else { display.innerText = "Không tìm thấy HWID!"; }
+        const API_URL = " https://humanistically-unphilanthropic-misael.ngrok-free.dev";
+
+        async function getKey() {
+            try {
+                const res = await fetch(`${API_URL}/fetch_key_web`);
+                const text = await res.text();
+                document.getElementById('key').innerText = text;
+            } catch (e) {
+                document.getElementById('key').innerText = "Lỗi kết nối Server!";
+            }
         }
+        function copy() {
+            navigator.clipboard.writeText(document.getElementById('key').innerText);
+            alert("Đã copy!");
+        }
+        window.onload = getKey;
     </script>
 </body>
 </html>
-
-
